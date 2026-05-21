@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { Edition } from "@/lib/murphyScore";
+import { track } from "@vercel/analytics";
 
 const LOADING_MESSAGES = [
   "Baking your catastrophe...",
@@ -178,6 +179,7 @@ export default function MurphyArticle({ article, isLoading, murphyScore }: Murph
   const handleShare = async () => {
     if (!article || shareStatus === "working") return;
     setShareStatus("working");
+    track("share_clicked");
 
     try {
       const blob = await generateShareCard(article, murphyScore);

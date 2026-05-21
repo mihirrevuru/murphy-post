@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import { track } from "@vercel/analytics";
 import Greeting from "@/components/Greeting";
 import MurphyArticle from "@/components/MurphyArticle";
 import MurphyScore from "@/components/MurphyScore";
@@ -101,6 +102,7 @@ export default function Home() {
         };
 
         setCurrentArticle(edition);
+        track("spiral_filed", { level: data.level });
         addEdition(edition);
 
         const updated = getEditions();
